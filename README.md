@@ -60,6 +60,14 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Introducción a las Vistas en CodeIgniter 4](#introducción-a-las-vistas-en-codeigniter-4)
 - [Mandar información del controlador a la vista](#mandar-información-del-controlador-a-la-vista)
 - [Retornar mas de una vista](#retornar-mas-de-una-vista)
+- [Layouts](#layouts)
+  - [Implementación de un Layout en CodeIgniter](#implementación-de-un-layout-en-codeigniter)
+  - [1. Creación del Layout Principal](#1-creación-del-layout-principal)
+  - [2. Uso del Layout en un Controlador](#2-uso-del-layout-en-un-controlador)
+  - [3. Creación de Vistas Específicas](#3-creación-de-vistas-específicas)
+  - [Ejemplo de Layout](#ejemplo-de-layout)
+  - [Llamar una vista desde el layout](#llamar-una-vista-desde-el-layout)
+- [Conexión a Base de Datos](#conexión-a-base-de-datos)
 
 ## Descripción 📝
 
@@ -1092,3 +1100,101 @@ con echo
 o con return
 
 ![alt text](image-21.png)
+
+# Layouts
+
+## Implementación de un Layout en CodeIgniter
+
+En CodeIgniter, un **layout** es una estructura base para las vistas de tu aplicación web. Los layouts permiten definir una plantilla común que puede ser reutilizada en diferentes vistas, asegurando consistencia en el diseño y facilitando el mantenimiento del código.
+
+## 1. Creación del Layout Principal
+
+Generalmente, creas una vista principal que contiene la estructura básica de tu página, como la cabecera, pie de página y secciones comunes. Puedes llamarla `layout.php` y colocarla en la carpeta de vistas (`application/views/`).
+
+```html
+<!-- application/views/layout.php -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><?= $title; ?></title>
+    <!-- Incluye tus archivos CSS aquí -->
+  </head>
+  <body>
+    <header>
+      <h1>Mi Aplicación Web</h1>
+      <!-- Menú de navegación, etc. -->
+    </header>
+    <main>
+      <?= $content; ?>
+    </main>
+    <footer>
+      <p>&copy; 2024 Mi Aplicación Web</p>
+    </footer>
+    <!-- Incluye tus archivos JavaScript aquí -->
+  </body>
+</html>
+```
+
+## 2. Uso del Layout en un Controlador
+
+En tu controlador, cargas las vistas específicas y las pasas a través del layout.
+
+```php
+// app/Controllers/Home.php
+namespace App\Controllers;
+
+class Home extends BaseController {
+    public function index() {
+        $data['title'] = 'Bienvenido a CodeIgniter 4';
+        return view('home', $data);
+    }
+}
+```
+
+## 3. Creación de Vistas Específicas
+
+Crea las vistas específicas que deseas mostrar dentro del layout. Por ejemplo, home.php.
+
+```php
+<!-- app/Views/home.php -->
+<?= $this->extend('layout'); ?>
+
+<?= $this->section('content'); ?>
+<h2>¡Hola, mundo!</h2>
+<p>Bienvenido a mi aplicación web construida con CodeIgniter 4.</p>
+<?= $this->endSection(); ?>
+```
+
+![alt text](image-22.png)
+
+## Ejemplo de Layout
+
+![alt text](image-23.png)
+
+Esta es una estructura basica de una plantilla html
+
+en la cual imprimimos con echo una seccion para renderizar llamada contenido
+![alt text](image-24.png)
+
+este layout lo vamos a llamar desde una vista
+con
+![alt text](image-25.png)
+
+Y vamos a crear la seccion de codigo que vamos a enviar como contenido de nuestra layout
+
+![alt text](image-26.png)
+
+Dentro del controlador retornamos la vista
+
+![alt text](image-27.png)
+
+## Llamar una vista desde el layout
+
+![alt text](image-28.png)
+
+# Conexión a Base de Datos
+
+Lo primero es configurar nuestras credenciales de acceso en el archivo .env que se sobre escribe a los demas archivos de configuracion
+
+El siguiente paso es
