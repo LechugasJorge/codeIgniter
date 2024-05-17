@@ -5,7 +5,9 @@
 <!-- Contenido -->
 <main class="page">
     <div class="container">
-        <h2>Detalle de Productos <?php echo $id ?> </h2>
+        <br>
+        <br>
+        <h1>Detalle de Productos <?php echo $producto['nombre']; ?> </h1>
     </div>
 </main>
 

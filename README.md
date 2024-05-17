@@ -81,6 +81,10 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
     - [Callbacks](#callbacks)
   - [Propiedades de la tabla a consultar](#propiedades-de-la-tabla-a-consultar)
     - [ejemplo de un modelo](#ejemplo-de-un-modelo)
+  - [Funciones de modelos](#funciones-de-modelos)
+    - [Función findAll();](#función-findall)
+  - [Función find();](#función-find)
+  - [Constructor del controlador- instancia modelo](#constructor-del-controlador--instancia-modelo)
 
 ## Descripción 📝
 
@@ -136,6 +140,10 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 ¡Listo para usar! 🚀👨‍💻 Si necesitas algo más, aquí estoy. 😊
 
 # CodeIgniter
+
+![alt text](image-46.png)
+
+![alt text](image-47.png)
 
 CodeIgniter es un framework de desarrollo web para PHP. 🚀 Está diseñado para desarrolladores que necesitan un conjunto de herramientas simple y elegante para crear aplicaciones web con todas las funcionalidades necesarias. Aquí tienes algunos puntos clave sobre CodeIgniter:
 
@@ -484,6 +492,8 @@ Estas son algunas de las configuraciones más comunes que puedes encontrar en el
 # Patrón MVC (Modelo-Vista-Controlador) 🌟
 
 ## ¿Qué es MVC? 🤔
+
+![alt text](image-48.png)
 
 MVC es un **patrón de diseño de software** que separa una aplicación en tres componentes principales: **Modelo**, **Vista** y **Controlador**. Esta separación facilita la gestión del código y mejora la Escalabilidad y el mantenimiento de la aplicación. Vamos a ver cada componente en detalle. 🔍
 
@@ -1483,8 +1493,62 @@ class ProductosModel extends Model
 }
 ```
 
+## Funciones de modelos
+
 Anteriormente se mostró como conectar a la base de datos desde el controlador
 
 ![alt text](image-37.png)
 
 Usando un modelo, ya no es necesario realizar la conexión de la misma manera ya que el framework la hace a través de métodos que se utilizan al usar un modelo
+
+el primer paso es instanciar el modelo desde cualquier función del controlador
+
+![alt text](image-38.png)
+
+no olvides importar la carpeta contenedora del modelo junto con el modelo para no importar todo
+
+![alt text](image-39.png)
+
+### Función findAll();
+
+después de instanciar existe la función findAll();
+Esta función contiene un select \ sin ningún where
+
+![alt text](image-41.png) => ![alt text](image-40.png)
+
+si la información que nos retorna es de tipo array hay que meter ese arreglo en una variable
+
+![alt text](image-42.png)
+
+Aquí se puede ver como se configuro para recibir un arreglo desde el modelo
+
+![alt text](image-43.png)
+
+para obtener la informacion en la vista hay que iterar con un foreach
+
+![alt text](image-44.png)
+
+## Función find();
+
+Sirve para traer un solo registro pide como parámetro un id y devuelve el id del registro consultado
+
+![alt text](image-45.png)
+
+en la vista lo estarias imprimiendo de esta manera
+
+![alt text](image-49.png)
+
+Tambien se puede pedir un arreglo de valores por ejemplo
+
+![alt text](image-50.png)
+
+de esta manera se tiene que actualizar la forma en la que se va a imprimir
+
+## Constructor del controlador- instancia al modelo
+
+Se recomienda instanciar al modelo desde el constructor de el controller
+
+![alt text](image-51.png)
+para poder invocar los metodos o funciones de un modelo desde cualquier funcion de la clase o controlador
+
+![alt text](image-52.png)
