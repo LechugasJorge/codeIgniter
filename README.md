@@ -25,18 +25,18 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Activación del Archivo .env](#activación-del-archivo-env)
   - [Contenido del Archivo .env](#contenido-del-archivo-env)
 - [Herramienta de Línea de Comandos de CodeIgniter spark](#herramienta-de-línea-de-comandos-de-codeigniter-spark)
-- [Configuracion inicial](#configuracion-inicial)
+- [Configuración inicial](#configuración-inicial)
   - [Configuración Inicial del Archivo app.php](#configuración-inicial-del-archivo-appphp)
   - [Configuración del Archivo Database.php](#configuración-del-archivo-databasephp)
 - [Patrón MVC (Modelo-Vista-Controlador) 🌟](#patrón-mvc-modelo-vista-controlador-)
   - [¿Qué es MVC? 🤔](#qué-es-mvc-)
-  - [Componentes de MVC 🧩](#componentes-de-mvc-)
-  - [Flujo de Trabajo en MVC 🚦](#flujo-de-trabajo-en-mvc-)
-  - [Descripción del Flujo 🔄](#descripción-del-flujo-)
-  - [Diagrama detallado](#diagrama-detallado)
-  - [Ventajas del MVC 🌟](#ventajas-del-mvc-)
-  - [Desventajas del MVC 😕](#desventajas-del-mvc-)
-  - [Ejemplos de Uso 🌐](#ejemplos-de-uso-)
+    - [Componentes de MVC 🧩](#componentes-de-mvc-)
+    - [Flujo de Trabajo en MVC 🚦](#flujo-de-trabajo-en-mvc-)
+    - [Descripción del Flujo 🔄](#descripción-del-flujo-)
+    - [Diagrama detallado](#diagrama-detallado)
+    - [Ventajas del MVC 🌟](#ventajas-del-mvc-)
+    - [Desventajas del MVC 😕](#desventajas-del-mvc-)
+    - [Ejemplos de Uso 🌐](#ejemplos-de-uso-)
 - [Controllers](#controllers)
   - [Creación de un Controlador](#creación-de-un-controlador)
   - [Funciones de un Controlador](#funciones-de-un-controlador)
@@ -50,7 +50,7 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
 - [Explicación de la Clase BaseController](#explicación-de-la-clase-basecontroller)
 - [Enrutamiento en CodeIgniter 4](#enrutamiento-en-codeigniter-4)
   - [Definición de rutas](#definición-de-rutas)
-  - [Secciones de una Ruta en CodeIgniter 4](#secciones-de-una-ruta-en-codeigniter-4)
+    - [Secciones de una Ruta en CodeIgniter 4](#secciones-de-una-ruta-en-codeigniter-4)
   - [Tipos de enrutamientos](#tipos-de-enrutamientos)
     - [Enrutamiento Automático](#enrutamiento-automático)
     - [Enrutamiento Manual](#enrutamiento-manual)
@@ -68,6 +68,19 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Ejemplo de Layout](#ejemplo-de-layout)
   - [Llamar una vista desde el layout](#llamar-una-vista-desde-el-layout)
 - [Conexión a Base de Datos](#conexión-a-base-de-datos)
+- [Modelos en CodeIgniter 4](#modelos-en-codeigniter-4)
+  - [¿Qué son los Modelos en CodeIgniter 4? 🛠️](#qué-son-los-modelos-en-codeigniter-4-️)
+  - [¿Para qué se usan los Modelos? 🎯](#para-qué-se-usan-los-modelos-)
+  - [Cómo Usar los Modelos en CodeIgniter 4 📝](#cómo-usar-los-modelos-en-codeigniter-4-)
+    - [Crear un Modelo](#crear-un-modelo)
+  - [Usar un Modelo](#usar-un-modelo)
+  - [Métodos Comunes de los Modelos 📚](#métodos-comunes-de-los-modelos-)
+  - [Ejemplos de Uso 🧩](#ejemplos-de-uso--1)
+  - [Configuración Adicional 🛠️](#configuración-adicional-️)
+    - [Validación de Datos](#validación-de-datos)
+    - [Callbacks](#callbacks)
+  - [Propiedades de la tabla a consultar](#propiedades-de-la-tabla-a-consultar)
+    - [ejemplo de un modelo](#ejemplo-de-un-modelo)
 
 ## Descripción 📝
 
@@ -97,7 +110,7 @@ A continuación se detallan los ejercicios disponibles en este repositorio:
 Introducción a CodeIgniter:
 Descripción: Aprende los fundamentos de CodeIgniter, incluyendo la configuración inicial y la creación de tu primera aplicación.
 Video de referencia: Curso de CodeIgniter - Introducción
-Archivo de ejercicio: 01-introduccion
+Archivo de ejercicio: 01-introducción
 (Agrega más ejercicios conforme vayas avanzando en el curso y en otros materiales)
 
 ## Referencias 🔗
@@ -112,7 +125,7 @@ Haz un fork del repositorio.
 Crea una rama con una descripción clara de tu mejora:
 bash
 Copiar código
-git checkout -b mejora-descripcion
+git checkout -b mejora-descripción
 Realiza tus cambios y haz commits con mensajes descriptivos.
 Envía un pull request detallando los cambios realizados.
 Licencia 📄
@@ -179,7 +192,7 @@ Para comenzar a desarrollar con CodeIgniter, necesitarás algunas herramientas b
 7. **CodeIgniter**: Por último, necesitas descargar CodeIgniter.
    - Descarga CodeIgniter: [https://codeigniter.com/download](https://codeigniter.com/download)
 
-### Pasos Básicos para Configurar tu Entorno
+## Pasos Básicos para Configurar tu Entorno
 
 1. **Instala el servidor web (XAMPP, WAMP, MAMP, LAMP)**.
 2. **Configura PHP** en tu servidor web.
@@ -420,7 +433,7 @@ spark doctor
 
 ```
 
-# Configuracion inicial
+# Configuración inicial
 
 ## Configuración Inicial del Archivo app.php
 
@@ -430,12 +443,12 @@ El archivo `app.php` es uno de los archivos de configuración clave en una aplic
 
 ![alt text](image-2.png)
 
-remplazar por la direccion de tu carpeta public
+remplazar por la dirección de tu carpeta public
 
 ![alt text](image-3.png)
 
 - **defaultLocale**: Idioma local de tu aplicación
-  Los idiomas se almacenan en app/Language algunos requieren instalacion
+  Los idiomas se almacenan en app/Language algunos requieren instalación
 
 - **indexPage**: Especifica el nombre del archivo de entrada en las URL generadas por CodeIgniter.
 - **uriProtocol**: Define el método que CodeIgniter usará para determinar la URI de la solicitud.
@@ -470,9 +483,9 @@ Estas son algunas de las configuraciones más comunes que puedes encontrar en el
 
 # Patrón MVC (Modelo-Vista-Controlador) 🌟
 
-### ¿Qué es MVC? 🤔
+## ¿Qué es MVC? 🤔
 
-MVC es un **patrón de diseño de software** que separa una aplicación en tres componentes principales: **Modelo**, **Vista** y **Controlador**. Esta separación facilita la gestión del código y mejora la escalabilidad y el mantenimiento de la aplicación. Vamos a ver cada componente en detalle. 🔍
+MVC es un **patrón de diseño de software** que separa una aplicación en tres componentes principales: **Modelo**, **Vista** y **Controlador**. Esta separación facilita la gestión del código y mejora la Escalabilidad y el mantenimiento de la aplicación. Vamos a ver cada componente en detalle. 🔍
 
 ### Componentes de MVC 🧩
 
@@ -511,7 +524,7 @@ MVC es un **patrón de diseño de software** que separa una aplicación en tres 
 5. **El Modelo Notifica a la Vista**: El modelo informa a la vista sobre los cambios en los datos.
 6. **La Vista se Actualiza**: La vista muestra la información actualizada al usuario.
 
-```
+```txt
 
 Flujo de MVC
 
@@ -567,7 +580,7 @@ Flujo de MVC
 
 ### Diagrama detallado
 
-```
+```txt
 
 +---------------+      1. Interacción del usuario     +---------------+
 |     Usuario   | ----------------------------------> |     Vista     |
@@ -628,7 +641,7 @@ Flujo de MVC
   - **Spring MVC** (Java) ☕
 
 - **Librerías/Frameworks Frontend**:
-  - **Angular** y **React** se basan en conceptos similares, aunque a menudo utilizan variaciones como MVVM (Model-View-ViewModel) o componentes.
+  - **Angular** y **React** se basan en conceptos similares, aunque a menudo utilizan variaciones como MVM (Model-View-ViewModel) o componentes.
 
 # Controllers
 
@@ -890,7 +903,7 @@ El controlador prácticamente es el que decide que se tiene que hacer según una
 
 En CodeIgniter 4, el enrutamiento se define en el archivo `Routes.php` en el directorio `app/Config`.
 
-### Definición de rutas
+## Definición de rutas
 
 ```php
 <?php
@@ -1012,7 +1025,7 @@ Estos métodos te proporcionan control sobre el enrutamiento automático en Code
 
 ![alt text](image-5.png)
 
-Funcion con parametros
+Función con parámetros
 
 ![alt text](image-6.png)
 
@@ -1024,7 +1037,7 @@ Controlador
 
 ![alt text](image-8.png)
 
-Se puede hacer limitando el rango del valor de los parametros en este cado limotamos solo digitos del 0 al 9 y que minimo tengan 2 cifras
+Se puede hacer limitando el rango del valor de los parámetros en este caso limitamos solo dígitos del 0 al 9 y que mínimo tengan 2 cifras
 
 ![alt text](image-9.png)
 
@@ -1032,7 +1045,7 @@ Rutas hacia una vista
 
 ![alt text](image-10.png)
 
-En este caso llamamos a una vista y le pasamos parametros
+En este caso llamamos a una vista y le pasamos parámetros
 
 ![alt text](image-11.png)
 
@@ -1056,12 +1069,14 @@ Las vistas son componentes esenciales que se utilizan para presentar datos al us
 1. **Creación de vistas:** Se crean como archivos individuales con la extensión `.php` en el directorio `app/Views`.
 2. **Pasando datos a las vistas:** Los controladores pueden pasar datos a las vistas utilizando un arreglo asociativo o un objeto como parámetro al cargar la vista.
 3. **Cargando vistas:** Se cargan desde los controladores utilizando el método `view()` proporcionado por la clase `CodeIgniter\View\View`.
+
    ![alt text](image-14.png)
 
    si tu vista esta en una subcarpeta es necesario especificarla
+
    ![alt text](image-19.png)
 
-Automaticamente la funcion busca dentro de nuestra carpeta de vistas
+Automáticamente la función busca dentro de nuestra carpeta de vistas
 
 4. **Renderizando vistas parciales:** Se pueden renderizar vistas parciales o fragmentos de HTML utilizando el método `renderSection()`.
 
@@ -1084,7 +1099,7 @@ En la Vista
 
 Se puede recibir e imprimir con un echo para que se respeten las etiquetas html
 
-Y también se puede pasar como texto plano esto con la funcion
+Y también se puede pasar como texto plano esto con la función
 esc()
 
 ![alt text](image-17.png)
@@ -1172,16 +1187,18 @@ Crea las vistas específicas que deseas mostrar dentro del layout. Por ejemplo, 
 
 ![alt text](image-23.png)
 
-Esta es una estructura basica de una plantilla html
+Esta es una estructura básica de una plantilla html
 
-en la cual imprimimos con echo una seccion para renderizar llamada contenido
+en la cual imprimimos con echo una sección para renderizar llamada contenido
+
 ![alt text](image-24.png)
 
 este layout lo vamos a llamar desde una vista
 con
+
 ![alt text](image-25.png)
 
-Y vamos a crear la seccion de codigo que vamos a enviar como contenido de nuestra layout
+Y vamos a crear la sección de codigo que vamos a enviar como contenido de nuestra layout
 
 ![alt text](image-26.png)
 
@@ -1198,7 +1215,276 @@ Dentro del controlador retornamos la vista
 Lo primero es configurar nuestras credenciales de acceso en el archivo .env que se sobre escribe a los demás archivos de configuración
 
 El siguiente paso es
-crear una variable para almacenar las credenciales de conexion
+crear una variable para almacenar las credenciales de conexión
+
 ![alt text](image-29.png)
 
-en otra variable guardamos
+en otra variable guardamos la query o consulta
+
+![alt text](image-30.png)
+
+```php
+<?php
+
+// Definimos el namespace de la clase para mantener el código organizado y evitar conflictos de nombres.
+namespace App\Controllers;
+
+// Definimos la clase Productos que extiende de BaseController, la clase base para los controladores en CodeIgniter.
+class Productos extends BaseController
+{
+    // Método index, que se ejecuta cuando se accede al controlador sin especificar un método.
+    public function index()
+    {
+        // Conectamos a la base de datos usando la configuración predeterminada.
+        $db = \Config\Database::connect();
+
+        // Ejecutamos una consulta SQL para seleccionar el código, nombre y stock de la tabla productos.
+        $query = $db->query("SELECT codigo, nombre, stock FROM productos");
+
+        // Obtenemos los resultados de la consulta en forma de un array de objetos.
+        $resultado = $query->getResult();
+
+        // Preparamos un array asociativo con datos para pasarlos a la vista.
+        $data = ['titulo' => 'Catálogo de Productos', 'productos' => $resultado];
+
+        // Cargamos la vista 'productos/index' y le pasamos los datos.
+        return view('productos/index', $data);
+    }
+}
+```
+
+en la vista podemos utilizar los lops valores retornados de la siguiente manera
+
+![alt text](image-31.png)
+
+el resultado también puede ser retornado como un arreglo
+
+![alt text](image-32.png)
+
+si es de esta manera en tu vista tienes que utilizar indices para consultar los datos del resultado retornado como arreglo
+
+![alt text](image-33.png)
+
+# Modelos en CodeIgniter 4
+
+![alt text](image-34.png)
+
+## ¿Qué son los Modelos en CodeIgniter 4? 🛠️
+
+Los Modelos en CodeIgniter 4 son componentes que manejan la lógica de acceso a datos y la interacción con la base de datos. Son responsables de realizar operaciones como crear, leer, actualizar y eliminar (CRUD) registros en la base de datos.
+
+## ¿Para qué se usan los Modelos? 🎯
+
+1. **Organización del Código**: Separan la lógica de negocio de la lógica de presentación.
+2. **Reutilización**: Facilitan la reutilización de la lógica de acceso a datos en diferentes partes de la aplicación.
+3. **Abstracción**: Abstraen la complejidad de las operaciones de base de datos, proporcionando métodos fáciles de usar para interactuar con los datos.
+
+## Cómo Usar los Modelos en CodeIgniter 4 📝
+
+### Crear un Modelo
+
+Para crear un modelo en CodeIgniter 4, necesitas crear una clase que extienda `CodeIgniter\Model`. Aquí hay un ejemplo:
+
+```php
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UsuarioModel extends Model
+{
+    protected $table = 'usuarios';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['nombre', 'email', 'contraseña'];
+}
+```
+
+## Usar un Modelo
+
+Para usar un modelo en tu controlador, primero necesitas cargarlo. Aquí hay un ejemplo de cómo hacerlo:
+
+```php
+
+<?php
+namespace App\Controllers;
+use App\Models\UsuarioModel;
+
+class UsuarioController extends BaseController
+{
+    public function index()
+    {
+        $usuarioModel = new UsuarioModel();
+        $data['usuarios'] = $usuarioModel->findAll();
+
+        return view('usuarios/index', $data);
+    }
+}
+```
+
+## Métodos Comunes de los Modelos 📚
+
+1. find($id): Obtiene un registro por su ID.
+2. findAll(): Obtiene todos los registros.
+3. insert($data): Inserta un nuevo registro.
+4. update($id, $data): Actualiza un registro existente.
+5. delete($id): Elimina un registro por su ID.
+
+![alt text](image-36.png)
+
+## Ejemplos de Uso 🧩
+
+- Obtener Todos los Registros
+
+```php
+$usuarioModel = new UsuarioModel();
+$usuarios = $usuarioModel->findAll();
+```
+
+- Obtener un Registro por ID
+
+```php
+$usuarioModel = new UsuarioModel();
+$usuario = $usuarioModel->find(1);
+```
+
+- Insertar un Nuevo Registro
+
+```php
+$usuarioModel = new UsuarioModel();
+$usuarioModel->insert([
+    'nombre' => 'Juan Pérez',
+    'email' => 'juan@example.com',
+    'contraseña' => '123456'
+]);
+```
+
+- Actualizar un Registro
+
+```php
+$usuarioModel = new UsuarioModel();
+$usuarioModel->update(1, [
+    'nombre' => 'Juan Pérez',
+    'email' => 'juan.perez@example.com'
+]);
+```
+
+- Eliminar un Registro
+
+```php
+$usuarioModel = new UsuarioModel();
+$usuarioModel->delete(1);
+```
+
+## Configuración Adicional 🛠️
+
+### Validación de Datos
+
+Puedes configurar reglas de validación en tu modelo:
+
+```php
+<?php
+
+namespace App\Models;
+use CodeIgniter\Model;
+class UsuarioModel extends Model
+{
+    protected $table = 'usuarios';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['nombre', 'email', 'contraseña'];
+
+    protected $validationRules = [
+        'nombre' => 'required|min_length[3]|max_length[255]',
+        'email' => 'required|valid_email',
+        'contraseña' => 'required|min_length[8]'
+    ];
+}
+```
+
+### Callbacks
+
+Puedes usar callbacks para ejecutar funciones antes o después de ciertas operaciones:
+
+```php
+<?php
+namespace App\Models;
+use CodeIgniter\Model;
+
+class UsuarioModel extends Model
+{
+    protected $table = 'usuarios';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['nombre', 'email', 'contraseña'];
+
+    protected $beforeInsert = ['hashPassword'];
+
+    protected function hashPassword(array $data)
+    {
+        if (isset($data['data']['contraseña'])) {
+            $data['data']['contraseña'] = password_hash($data['data']['contraseña'], PASSWORD_DEFAULT);
+        }
+
+        return $data;
+    }
+}
+```
+
+> Los modelos en CodeIgniter 4 son una poderosa herramienta para manejar la lógica de acceso a datos de tu aplicación. Organizan y simplifican la interacción con la base de datos, permitiendo un código más limpio y mantenible.
+
+## Propiedades de la tabla a consultar
+
+![alt text](image-35.png)
+
+### ejemplo de un modelo
+
+```php
+<?php
+
+// Definimos el espacio de nombres para esta clase, que está dentro de la carpeta App\Models
+namespace App\Models;
+
+// Importamos la clase Model de CodeIgniter para poder extenderla
+use CodeIgniter\Model;
+
+class ProductosModel extends Model
+{
+    // Nombre de la tabla en la base de datos que este modelo manejará
+    protected $table      = 'productos';
+
+    // Nombre de la columna que es la llave primaria de la tabla
+    protected $primaryKey = 'idproductos';
+
+    // Indicamos que la llave primaria utiliza auto-incremento
+    protected $useAutoIncrement = true;
+
+    // Especificamos que los resultados serán devueltos como un arreglo; se podría usar 'object' para objetos
+    protected $returnType = 'array';
+
+    // Habilitamos el uso de soft deletes (borrado lógico) en este modelo
+    protected $useSoftDeletes = true;
+
+    // Campos permitidos para inserción y actualización
+    protected $allowedFields = ['codigo', 'nombre', 'stock', 'id_almacen', 'estatus'];
+
+    // Habilitamos el manejo automático de timestamps
+    protected $useTimestamps = true;
+
+    // Formato de las fechas que se manejarán
+    protected $dateFormat = 'datetime';
+
+    // Nombre de la columna que almacenará la fecha de creación
+    protected $createdField = 'fecha_alta';
+
+    // Nombre de la columna que almacenará la fecha de la última modificación
+    protected $updatedField = 'fecha_modifica';
+
+    // Nombre de la columna que almacenará la fecha de borrado lógico
+    protected $deletedField = 'fecha_elimina';
+}
+```
+
+Anteriormente se mostró como conectar a la base de datos desde el controlador
+
+![alt text](image-37.png)
+
+Usando un modelo, ya no es necesario realizar la conexión de la misma manera ya que el framework la hace a través de métodos que se utilizan al usar un modelo
