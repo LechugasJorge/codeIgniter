@@ -1195,6 +1195,10 @@ Dentro del controlador retornamos la vista
 
 # Conexión a Base de Datos
 
-Lo primero es configurar nuestras credenciales de acceso en el archivo .env que se sobre escribe a los demas archivos de configuracion
+Lo primero es configurar nuestras credenciales de acceso en el archivo .env que se sobre escribe a los demás archivos de configuración
 
 El siguiente paso es
+crear una variable para almacenar las credenciales de conexion
+![alt text](image-29.png)
+
+en otra variable guardamos
