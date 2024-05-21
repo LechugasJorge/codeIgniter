@@ -20,7 +20,7 @@ class Productos extends BaseController
 */
         $productos = new ProductosModel();
 
-        $resultado =  $productos->findAll();
+        $resultado =  $productos->where('estatus', 1)->findAll();
 
         $data = ['titulo' => 'Catálogo de Productos', 'productos' => $resultado];
 
@@ -50,12 +50,11 @@ class Productos extends BaseController
     public function transaccion()
     {
         $data = [
-            'codigo' => "09860896098",
-            'nombre' => 'laptop',
-            'stock' => 7,
-            'id_almacen' => 1,
-            'estatus' => 1
+            'codigo' => "33333",
+            'nombre' => 'Carro',
         ];
-        echo $this->productosModel->insert($data, false);//retorna el ID insertado
+        echo $this->productosModel->purgeDeleted();
+
+        echo $this->productosModel->getInsertId(); //retorna el ID insertado
     }
 }

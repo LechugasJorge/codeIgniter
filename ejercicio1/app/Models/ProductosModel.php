@@ -10,7 +10,7 @@ class ProductosModel extends Model
     protected $primaryKey = 'idproductos';
     protected $useAutoIncrement = true;
     protected $returnType = 'array'; //object
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = true; //Activo no borra registro
     protected $allowedFields = ['codigo', 'nombre', 'stock', 'id_almacen', 'estatus'];
     //Datos
     protected $useTimestamps = true;

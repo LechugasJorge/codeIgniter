@@ -82,9 +82,25 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Propiedades de la tabla a consultar](#propiedades-de-la-tabla-a-consultar)
     - [ejemplo de un modelo](#ejemplo-de-un-modelo)
   - [Funciones de modelos](#funciones-de-modelos)
-    - [Función findAll();](#función-findall)
-  - [Función find();](#función-find)
-  - [Constructor del controlador- instancia modelo](#constructor-del-controlador--instancia-modelo)
+- [Constructor del controlador- instancia al modelo](#constructor-del-controlador--instancia-al-modelo)
+- [Función findAll();](#función-findall)
+  - [¿Qué es findAll()?](#qué-es-findall)
+- [Función find()](#función-find)
+  - [¿Qué hace la función find()?](#qué-hace-la-función-find)
+- [FUNCIÓN insert() Y getInsertId()](#función-insert-y-getinsertid)
+  - [Lamar al ultimo ID insertado](#lamar-al-ultimo-id-insertado)
+- [FUNCION Update()](#funcion-update)
+- [FUNCION Delete()](#funcion-delete)
+- [FUNCION purgeDeleted()](#funcion-purgedeleted)
+- [Query Builder Class en CodeIgniter 4](#query-builder-class-en-codeigniter-4)
+  - [Características de la Query Builder Class](#características-de-la-query-builder-class)
+  - [Ejemplos Prácticos](#ejemplos-prácticos)
+  - [SELECT](#select)
+  - [INSERT](#insert)
+  - [UPDATE](#update)
+  - [DELETE](#delete)
+  - [Ventajas](#ventajas)
+  - [Funcion where de la clase query builder](#funcion-where-de-la-clase-query-builder)
 
 ## Descripción 📝
 
@@ -1509,9 +1525,23 @@ no olvides importar la carpeta contenedora del modelo junto con el modelo para n
 
 ![alt text](image-39.png)
 
-### Función findAll();
+# Constructor del controlador- instancia al modelo
 
-después de instanciar existe la función findAll();
+Se recomienda instanciar al modelo desde el constructor de el controller
+
+![alt text](image-51.png)
+
+para poder invocar los métodos o funciones de un modelo desde cualquier función de la clase o controlador
+
+![alt text](image-52.png)
+
+# Función findAll();
+
+### ¿Qué es findAll()?
+
+La función findAll() es parte de la clase Model en CodeIgniter 4 y se utiliza para recuperar todos los registros de una tabla, o un subconjunto de registros especificando un límite y un offset.
+
+después de instanciar el modelo existe la función findAll();
 Esta función contiene un select \ sin ningún where
 
 ![alt text](image-41.png) => ![alt text](image-40.png)
@@ -1528,7 +1558,36 @@ para obtener la informacion en la vista hay que iterar con un foreach
 
 ![alt text](image-44.png)
 
-## Función find();
+Otro ejemplo
+
+![alt text](image-58.png)
+
+Con limite y offset
+
+![alt text](image-59.png)
+
+![alt text](image-60.png)
+
+Notas Adicionales
+
+- **Seguridad**: Asegúrate de usar funciones de escape como esc() en las vistas para evitar ataques XSS.
+- **Optimización**: Si esperas muchos registros, considera usar paginación para mejorar el rendimiento.
+
+# Función find()
+
+### ¿Qué hace la función find()?
+
+La función find() busca un registro en la base de datos basado en su clave primaria. Es decir, debes pasar el valor de la clave primaria del registro que deseas recuperar como argumento de la función
+
+Ejemplo
+
+Modelo
+
+![alt text](image-61.png)
+
+Funcion llamada desde el controlador
+
+![alt text](image-62.png)
 
 Sirve para traer un solo registro pide como parámetro un id y devuelve el id del registro consultado
 
@@ -1544,11 +1603,198 @@ Tambien se puede pedir un arreglo de valores por ejemplo
 
 de esta manera se tiene que actualizar la forma en la que se va a imprimir
 
-## Constructor del controlador- instancia al modelo
+![alt text](image-63.png)
 
-Se recomienda instanciar al modelo desde el constructor de el controller
+# FUNCIÓN insert() Y getInsertId()
 
-![alt text](image-51.png)
-para poder invocar los metodos o funciones de un modelo desde cualquier funcion de la clase o controlador
+Sirve para insertar valores en una tabla es un metodo propio del modelo
+y si lo imprimes con un echo te retorna un 1 como valor booleano el cual representa que el insert se realizo correctamente
 
-![alt text](image-52.png)
+![alt text](image-53.png)
+
+se le manda como parametro un arreglo con los valores que se desaen insertar en la tabla es necesario que estos cumplan con el tipo de vaslores que requiere la tabla en cada registro
+
+![alt text](image-54.png)
+
+ademas de el arreglo con los valores puedes ponerle false o true para poder obtener tambien el id de lo que insertaste en la tabla.
+Por ejemplo
+
+![alt text](image-55.png)
+
+Resultado en pantalla por el echo
+
+![alt text](image-56.png)
+
+## Lamar al ultimo ID insertado
+
+Otra forma de obtener el ultimo ID insertado es con la funcion getInsertId()
+
+![alt text](image-57.png)
+
+# FUNCION Update()
+
+En CodeIgniter 4, la función update es fundamental para modificar registros en la base de datos.
+
+![alt text](image-64.png)
+
+Notas Importantes
+Protección de Campos:
+Asegúrate de que los campos que estás actualizando están en la propiedad allowedFields del modelo. Esto ayuda a prevenir ataques de inyección SQL.
+
+Retorno de la Función:
+La función update retorna true en caso de éxito y false en caso de error.
+
+Lo primero es crear un arreglo con la información que vas a cambiar
+
+![alt text](image-65.png)
+
+Después declaras tu Funcion y como parámetro le mandas el arreglo y el id del registro que vas a modificar
+
+![alt text](image-66.png)
+
+Tambien se pueden cambiar varios registros a la vez con un arreglo en la parte donde va el id
+
+ejemplo
+
+![alt text](image-67.png)
+
+# FUNCION Delete()
+
+Para eliminar un registro de una base de datos es necesario ser consiente de que existe una opción en el modelo que te permite controlar si al borrar un registro se borra definitivamente o solo se deja de cargar.
+Esta configuración es
+
+![alt text](image-68.png)
+
+si se tiene como True no elimina el registro
+si se tiene como False si elimina el registro
+
+la función solo requiere que se le pase el id del registro que queremos eliminar
+
+De esta manerta si tu tienes un campo llamado fecha_elimina en tu tabla el registro no se eliminará sino que esa fecha de eliminacion se actualizara
+
+![alt text](image-69.png)
+
+Si useSoftDeletes lo cambiamos a false el registro sera eliminado
+
+![alt text](image-70.png)
+
+de esta manera si se borra el registro
+
+![alt text](image-72.png)
+
+![alt text](image-71.png)
+
+de igual manera esto puede funcionar con un arreglo con diferentes ids
+
+![alt text](image-73.png)
+
+al final de cuentas si tu realizas una consulta con findAll()
+Solo obtendras los registros que no tengan fecha de eliminacion, y los registros existentes
+
+![alt text](image-74.png)
+
+Para obtener todos los registros estén con fecha de eliminación o no debes de usar una función extra
+
+![alt text](image-75.png)
+
+![alt text](image-76.png)
+
+De esta manera se traen todos los registros aunque tengan fecha de eliminación
+
+# FUNCION purgeDeleted()
+
+Esta función sirve para eliminar definitivamente los registros que se hayas dado de baja.
+
+![alt text](image-77.png)
+
+Ejemplo;
+
+Antes
+
+![alt text](image-78.png)
+
+Después de llamar a la función
+
+![alt text](image-79.png)
+
+Pero es necesario tener activa la opción de useSoftDeletes
+
+![alt text](image-70.png)
+
+# Query Builder Class en CodeIgniter 4
+
+En CodeIgniter 4, la **Query Builder Class** es una herramienta poderosa que facilita la construcción y ejecución de consultas SQL de manera programática y segura. Esta clase te permite interactuar con la base de datos sin necesidad de escribir directamente las consultas SQL, lo cual reduce errores y mejora la seguridad contra inyecciones SQL. Aquí te dejo un resumen de sus características principales:
+
+### Características de la Query Builder Class
+
+1. **Construcción de Consultas**: Permite construir consultas `SELECT`, `INSERT`, `UPDATE` y `DELETE` de forma sencilla y legible.
+2. **Encadenamiento de Métodos**: Los métodos se pueden encadenar para crear consultas más complejas de manera clara y estructurada.
+3. **Escapado Automático**: Los valores y nombres de tablas y columnas se escapan automáticamente para prevenir inyecciones SQL.
+4. **Compatibilidad con Distintas Bases de Datos**: CodeIgniter 4 soporta múltiples tipos de bases de datos, y la Query Builder Class maneja las diferencias entre ellas.
+
+### Ejemplos Prácticos
+
+### SELECT
+
+```php
+// Conecta con la base de datos utilizando la configuración por defecto
+$db = \Config\Database::connect();
+
+// Obtiene el constructor de consultas para la tabla 'users'
+$builder = $db->table('users');
+
+// Construye una consulta SELECT para obtener los campos 'id', 'name' y 'email' de la tabla 'users'
+// Añade una condición WHERE para seleccionar solo los registros donde el 'status' sea 'active'
+// Ordena los resultados por el campo 'name' en orden ascendente
+$query = $builder->select('id, name, email')
+                 ->where('status', 'active')
+                 ->orderBy('name', 'ASC')
+                 ->get();
+
+// Ejecuta la consulta y obtiene los resultados como un array de objetos
+$results = $query->getResult();
+```
+
+### INSERT
+
+```php
+$data = [
+    'name' => 'John Doe',
+    'email' => 'john.doe@example.com',
+    'status' => 'active'
+];
+
+$builder->insert($data);
+```
+
+### UPDATE
+
+```php
+$data = [
+    'status' => 'inactive'
+];
+
+$builder->where('id', 1)
+        ->update($data);
+```
+
+### DELETE
+
+```php
+$builder->where('id', 1)
+        ->delete();
+```
+
+### Ventajas
+
+- **Simplicidad y Legibilidad**: Hace que las consultas sean más fáciles de leer y escribir.
+- **Seguridad**: Reduce riesgos de inyección SQL.
+- **Flexibilidad**: Facilita la creación de consultas complejas mediante el encadenamiento de métodos.
+
+La Query Builder Class en CodeIgniter 4 es esencial para trabajar con bases de datos de manera eficiente y segura, permitiendo a los desarrolladores centrarse más en la lógica de negocio y menos en los detalles técnicos de SQL.
+
+### Funcion where de la clase query builder
+
+El método where se utiliza para añadir una cláusula WHERE a una consulta SQL, filtrando los registros que cumplen con una condición específica.
+
+![alt text](image-80.png)

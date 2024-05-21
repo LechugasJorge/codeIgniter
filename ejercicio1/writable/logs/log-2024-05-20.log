@@ -1,0 +1,155 @@
+INFO - 2024-05-20 16:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 17:30:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 17:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-05-20 17:45:06 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`)) in C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\MySQLi\Connection.php:308
+Stack trace:
+#0 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `pr...', 0)
+#1 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pr...')
+#2 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pr...')
+#3 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pr...', Array, false)
+#4 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\BaseModel.php(840): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Model.php(791): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\app\Controllers\Productos.php(59): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+#9 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+#10 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2024-05-20 17:45:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+[Method: GET, Route: productos/transaccion]
+in SYSTEMPATH\Database\BaseConnection.php on line 676.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 2 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 5 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-20 17:45:06 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 313.
+ 1 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:06\', \'2024-05-20 17:45:06\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:06\', \'2024-05-20 17:45:06\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 4 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 7 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-20 17:45:06 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 308.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:06\', \'2024-05-20 17:45:06\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:06\', \'2024-05-20 17:45:06\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:06\', \'2024-05-20 17:45:06\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 5 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 8 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-05-20 17:45:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-05-20 17:45:07 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`)) in C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\MySQLi\Connection.php:308
+Stack trace:
+#0 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `pr...', 0)
+#1 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pr...')
+#2 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pr...')
+#3 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pr...', Array, false)
+#4 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\BaseModel.php(840): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Model.php(791): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\app\Controllers\Productos.php(59): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+#9 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+#10 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\EjerciciosdeCodeIgniter\codeIgniter\ejercicio1\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2024-05-20 17:45:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+[Method: GET, Route: productos/transaccion]
+in SYSTEMPATH\Database\BaseConnection.php on line 676.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 2 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 5 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-20 17:45:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 313.
+ 1 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:07\', \'2024-05-20 17:45:07\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:07\', \'2024-05-20 17:45:07\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 4 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 7 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-20 17:45:07 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`mispruebas`.`productos`, CONSTRAINT `fk_productos_almacen` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`idalmacen`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 308.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:07\', \'2024-05-20 17:45:07\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:07\', \'2024-05-20 17:45:07\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (\'09860896098\', \'laptop\', 7, 1, 1, \'2024-05-20 17:45:07\', \'2024-05-20 17:45:07\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `productos` (`codigo`, `nombre`, `stock`, `id_almacen`, `estatus`, `fecha_alta`, `fecha_modifica`) VALUES (:codigo:, :nombre:, :stock:, :id_almacen:, :estatus:, :fecha_alta:, :fecha_modifica:)', [...], false)
+ 5 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], false)
+ 8 APPPATH\Controllers\Productos.php(59): CodeIgniter\Model->insert([...], false)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->transaccion()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-05-20 17:54:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 18:26:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 18:36:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 18:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 18:37:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 18:37:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:29:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:29:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:35:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 19:35:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:09:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:09:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:09:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:10:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:24:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:25:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:25:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-20 20:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
