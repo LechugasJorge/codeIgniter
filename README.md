@@ -1,4 +1,4 @@
-# Ejercicios CodeIgniter 🚀
+# MI PRIMER LIBRO CodeIgniter 🚀
 
 Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para aprender a usar el framework CodeIgniter. Este repositorio está diseñado para ayudar a desarrolladores de todos los niveles a mejorar sus habilidades en CodeIgniter a través de ejemplos prácticos y ejercicios.
 
@@ -101,6 +101,13 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [DELETE](#delete)
   - [Ventajas](#ventajas)
   - [Funcion where de la clase query builder](#funcion-where-de-la-clase-query-builder)
+    - [Ver ultima query](#ver-ultima-query)
+  - [Función select de la clase query builder](#función-select-de-la-clase-query-builder)
+  - [Funcion orderBy() de la clase Query Builder](#funcion-orderby-de-la-clase-query-builder)
+  - [Función limit(); de Query Builder](#función-limit-de-query-builder)
+  - [Query Builder y sus demas funciones](#query-builder-y-sus-demas-funciones)
+  - [Join conQuery Buider](#join-conquery-buider)
+- [Migrations o Migraciones](#migrations-o-migraciones)
 
 ## Descripción 📝
 
@@ -1798,3 +1805,293 @@ La Query Builder Class en CodeIgniter 4 es esencial para trabajar con bases de d
 El método where se utiliza para añadir una cláusula WHERE a una consulta SQL, filtrando los registros que cumplen con una condición específica.
 
 ![alt text](image-80.png)
+
+![alt text](image-81.png)
+
+En resumen, el método where en la clase Query Builder de CodeIgniter 4 es fundamental para filtrar los resultados de las consultas SQL según condiciones específicas.
+
+otra forma
+
+![alt text](image-83.png)
+
+#### Ver ultima query
+
+![alt text](image-84.png)
+
+Tambien puede ser con
+
+![alt text](image-86.png)
+
+Sin embargo un objeto se tiene que tratar de diferente manera para poder ser impreso
+
+Recuerda la diferencia entre
+
+getResult(); y getResultArray();
+
+Es la forma en la que te retorna la información
+
+con getResultArray(); Obtenemos
+
+![alt text](image-85.png)
+
+### Función select de la clase query builder
+
+La función select se utiliza para definir las columnas que quieres recuperar de una tabla en una consulta SELECT.
+
+![alt text](image-87.png)
+
+![alt text](image-88.png)
+
+![alt text](image-89.png)
+
+![alt text](image-90.png)
+
+Ejemplo practico
+
+```php
+// Conecta con la base de datos utilizando la configuración por defecto
+$db = \Config\Database::connect();
+
+// Obtiene el constructor de consultas para la tabla 'users'
+$builder = $db->table('users');
+
+// Construye una consulta SELECT para obtener los campos 'id', 'name' y 'email' de la tabla 'users'
+// Añade una condición WHERE para seleccionar solo los registros donde el 'status' sea 'active'
+// Ordena los resultados por el campo 'name' en orden ascendente
+$query = $builder->select('id, name, email') // Define las columnas a seleccionar
+                 ->where('status', 'active') // Agrega la condición WHERE
+                 ->orderBy('name', 'ASC') // Ordena los resultados
+                 ->get(); // Ejecuta la consulta
+
+// Ejecuta la consulta y obtiene los resultados como un array de objetos
+$results = $query->getResult();
+```
+
+Segundo ejemplo
+
+Consulta
+
+![alt text](image-91.png)
+
+Resultado
+
+![alt text](image-92.png)
+
+Ejemplo con 2 where y un select
+
+![alt text](image-93.png)
+
+la query sería así
+
+![alt text](image-94.png)
+
+se puede hacer tambien de esta manera
+para dos filtros con un solo where se agrega un arreglo y se envia a un solo where
+
+![alt text](image-95.png)
+
+El resultado seria el mismo
+
+![alt text](image-94.png)
+
+también es verdad que se pueden agregar directamente operaciones lógicas desde el una variable string
+
+![alt text](image-96.png)
+
+El resultado seria el mismo
+
+![alt text](image-94.png)
+
+### Funcion orderBy() de la clase Query Builder
+
+La función orderBy en el Query Builder de CodeIgniter 4 se utiliza para especificar el orden en el que se deben devolver los resultados de una consulta SQL. Puedes ordenar los resultados en orden ascendente (ASC) o descendente (DESC) según una o más columnas.
+
+![alt text](image-97.png)
+
+![alt text](image-99.png)
+
+![alt text](image-100.png)
+
+Ejemplo practico
+
+```php
+// Conecta con la base de datos utilizando la configuración por defecto
+$db = \Config\Database::connect();
+
+// Obtiene el constructor de consultas para la tabla 'users'
+$builder = $db->table('users');
+
+// Construye una consulta SELECT para obtener los campos 'id', 'name' y 'email' de la tabla 'users'
+// Añade una condición WHERE para seleccionar solo los registros donde el 'status' sea 'active'
+// Ordena los resultados por el campo 'name' en orden ascendente
+$query = $builder->select('id, name, email') // Define las columnas a seleccionar
+                 ->where('status', 'active') // Agrega la condición WHERE
+                 ->orderBy('name', 'ASC') // Ordena los resultados por el campo 'name' en orden ascendente
+                 ->get(); // Ejecuta la consulta
+
+// Ejecuta la consulta y obtiene los resultados como un array de objetos
+$results = $query->getResult();
+```
+
+La función orderBy es una herramienta esencial en el Query Builder de CodeIgniter 4 para controlar la secuencia en la que se presentan los resultados de una consulta, permitiendo ordenar de forma sencilla y eficiente.
+
+### Función limit(); de Query Builder
+
+se utiliza para restringir el número de filas devueltas por una consulta SQL. Es útil cuando necesitas paginar resultados o simplemente obtener un subconjunto específico de los datos.
+
+![alt text](image-101.png)
+
+![alt text](image-102.png)
+
+Ejemplo práctico
+
+```php
+// Conecta con la base de datos utilizando la configuración por defecto
+$db = \Config\Database::connect();
+
+// Obtiene el constructor de consultas para la tabla 'users'
+$builder = $db->table('users');
+
+// Construye una consulta SELECT para obtener los campos 'id', 'name' y 'email' de la tabla 'users'
+// Añade una condición WHERE para seleccionar solo los registros donde el 'status' sea 'active'
+// Ordena los resultados por el campo 'name' en orden ascendente
+// Limita los resultados a un máximo de 10 filas
+$query = $builder->select('id, name, email') // Define las columnas a seleccionar
+                 ->where('status', 'active') // Agrega la condición WHERE
+                 ->orderBy('name', 'ASC') // Ordena los resultados por el campo 'name' en orden ascendente
+                 ->limit(10) // Limita los resultados a 10 filas
+                 ->get(); // Ejecuta la consulta
+
+// Ejecuta la consulta y obtiene los resultados como un array de objetos
+$results = $query->getResult();
+```
+
+La función limit es una herramienta esencial en el Query Builder de CodeIgniter 4 para gestionar la cantidad de datos recuperados por una consulta, proporcionando control y eficiencia en el manejo de resultados.
+
+Ejemplo 2
+
+![alt text](image-103.png)
+
+![alt text](image-104.png)
+
+## Query Builder y sus demas funciones
+
+la Clase Query Builder contiene aun m,as funciones que se pueden consultar en la documentación oficial de CodeIgniter 4
+
+aqui te mostare un resumen rapido de algunas que ya vimos y otras que uan faltan
+
+![alt text](image-105.png)
+
+![alt text](image-106.png)
+
+![alt text](image-107.png)
+
+![alt text](image-108.png)
+
+![alt text](image-109.png)
+
+![alt text](image-110.png)
+
+![alt text](image-111.png)
+
+![alt text](image-112.png)
+
+![alt text](image-113.png)
+
+![alt text](image-114.png)
+
+![alt text](image-115.png)
+
+![alt text](image-116.png)
+
+![alt text](image-117.png)
+
+![alt text](image-118.png)
+
+![alt text](image-119.png)
+
+![alt text](image-120.png)
+
+![alt text](image-121.png)
+
+![alt text](image-122.png)
+
+![alt text](image-123.png)
+
+![alt text](image-124.png)
+
+![alt text](image-125.png)
+
+![alt text](image-126.png)
+
+```php
+$count = $builder->where('status', 'active')->countAllResults();
+```
+
+![alt text](image-127.png)
+
+![alt text](image-128.png)
+
+```php
+$builder->set('name', 'John Doe')->set('status', 'active')->insert();
+```
+
+## Join conQuery Buider
+
+Puede que requieras hacer un join de dos tablas y que en ambas tsablas existan columnas llamadas con el mismo nombre;
+lo que provocará posibles confuciones a la hora de interpretarse tu codigo. y por ejemplo si las dos tablas tiene una columna llamada nombre tienes que hacewr uso de AS para asignar otro nombre
+Por ejemplo
+
+```php
+$db = \Config\Database::connect();
+        $builder = $db->table('productos');
+        $builder->select('*');
+        $builder->join('almacen', 'productos.id_almacen=almacen.idalmacen');
+        $query = $builder->get();
+        $resultado = $query->getResultArray();
+        echo $db->getLastQuery();
+```
+
+![alt text](image-129.png)
+
+con este select estamos trayendop toso los campos sin importar su nombre lo cual es malo
+lo ideal es que hagas realices AS cuando los nombres de las columnas se repiten de esta manera
+
+![alt text](image-130.png)
+
+![alt text](image-131.png)
+
+de esta manera estamos especificando que queremos cambiar el nombre de una columna llamada nombre ya que se repite la misma columna en la otra tabla.
+Esto permite evitar confusiones a la hora de usar la respuesta de la query
+
+# Migrations o Migraciones
+
+![alt text](image-132.png)
+
+Se guardean dentro de
+
+app/Database/Migrations
+
+Se pueden generar de manera automática con spark y de manera manual
+
+De manera automática
+
+![alt text](image-133.png)
+
+![alt text](image-134.png)
+
+Como podemos observar en el nombre llevan un formato de fecha y hora el cual se debe respetar ya que el framework indexa estos archivos segun ss fechas,
+
+El formato para dichas fechas es ;
+
+![alt text](image-135.png)
+
+Con esto el framework sabra en que orden ejecutar las migraciones
+
+estructura inicial
+
+![alt text](image-136.png)
+
+La funcion up sirve para crear la estructura o hacer las modificaciones y que se ejecuten en tu base de datos
+
+La funcion down sirve para revertir o hacer un rollback de las modificaciones que se hagan en up
