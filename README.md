@@ -4,7 +4,7 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
 
 ## Tabla de Contenidos 📑
 
-- [Ejercicios CodeIgniter 🚀](#ejercicios-codeigniter-)
+- [MI PRIMER LIBRO CodeIgniter 🚀](#mi-primer-libro-codeigniter-)
   - [Tabla de Contenidos 📑](#tabla-de-contenidos-)
   - [Descripción 📝](#descripción-)
   - [Requisitos 🛠️](#requisitos-️)
@@ -106,8 +106,23 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Funcion orderBy() de la clase Query Builder](#funcion-orderby-de-la-clase-query-builder)
   - [Función limit(); de Query Builder](#función-limit-de-query-builder)
   - [Query Builder y sus demas funciones](#query-builder-y-sus-demas-funciones)
-  - [Join conQuery Buider](#join-conquery-buider)
+  - [Join conQuery Builder](#join-conquery-builder)
 - [Migrations o Migraciones](#migrations-o-migraciones)
+  - [Que son las migraciones](#que-son-las-migraciones)
+  - [Cómo ejecutar una Migración](#cómo-ejecutar-una-migración)
+  - [Migracion para crear una tabla y borrarla](#migracion-para-crear-una-tabla-y-borrarla)
+  - [Migración para Modificar la Tabla (Agregar una Columna y eliminar)](#migración-para-modificar-la-tabla-agregar-una-columna-y-eliminar)
+  - [Regresar a otra migración](#regresar-a-otra-migración)
+  - [Ejecutar una migracion desde consola](#ejecutar-una-migracion-desde-consola)
+- [Seeders](#seeders)
+  - [Donde estan los seeders](#donde-estan-los-seeders)
+  - [crear seeders desde CLI](#crear-seeders-desde-cli)
+  - [Estructura de un seeder](#estructura-de-un-seeder)
+  - [Ejecutar seeder con CLI y desde un controller](#ejecutar-seeder-con-cli-y-desde-un-controller)
+- [Helpers](#helpers)
+  - [ubicacion](#ubicacion)
+  - [Como Activar un helper](#como-activar-un-helper)
+  - [Creacion de Helper](#creacion-de-helper)
 
 ## Descripción 📝
 
@@ -2036,10 +2051,10 @@ $count = $builder->where('status', 'active')->countAllResults();
 $builder->set('name', 'John Doe')->set('status', 'active')->insert();
 ```
 
-## Join conQuery Buider
+## Join conQuery Builder
 
-Puede que requieras hacer un join de dos tablas y que en ambas tsablas existan columnas llamadas con el mismo nombre;
-lo que provocará posibles confuciones a la hora de interpretarse tu codigo. y por ejemplo si las dos tablas tiene una columna llamada nombre tienes que hacewr uso de AS para asignar otro nombre
+Puede que requieras hacer un join de dos tablas y que en ambas tablas existan columnas llamadas con el mismo nombre;
+lo que provocará posibles confusiones a la hora de interpretarse tu codigo. y por ejemplo si las dos tablas tiene una columna llamada nombre tienes que hacer uso de AS para asignar otro nombre
 Por ejemplo
 
 ```php
@@ -2054,7 +2069,7 @@ $db = \Config\Database::connect();
 
 ![alt text](image-129.png)
 
-con este select estamos trayendop toso los campos sin importar su nombre lo cual es malo
+con este select estamos trayendo toso los campos sin importar su nombre lo cual es malo
 lo ideal es que hagas realices AS cuando los nombres de las columnas se repiten de esta manera
 
 ![alt text](image-130.png)
@@ -2066,9 +2081,11 @@ Esto permite evitar confusiones a la hora de usar la respuesta de la query
 
 # Migrations o Migraciones
 
+## Que son las migraciones
+
 ![alt text](image-132.png)
 
-Se guardean dentro de
+Se guardan dentro de
 
 app/Database/Migrations
 
@@ -2080,7 +2097,7 @@ De manera automática
 
 ![alt text](image-134.png)
 
-Como podemos observar en el nombre llevan un formato de fecha y hora el cual se debe respetar ya que el framework indexa estos archivos segun ss fechas,
+Como podemos observar en el nombre llevan un formato de fecha y hora el cual se debe respetar ya que el framework indexa estos archivos según sus fechas,
 
 El formato para dichas fechas es ;
 
@@ -2088,10 +2105,336 @@ El formato para dichas fechas es ;
 
 Con esto el framework sabra en que orden ejecutar las migraciones
 
-estructura inicial
+Estructura inicial
 
 ![alt text](image-136.png)
 
-La funcion up sirve para crear la estructura o hacer las modificaciones y que se ejecuten en tu base de datos
+La función up sirve para crear la estructura o hacer las modificaciones y que se ejecuten en tu base de datos
 
-La funcion down sirve para revertir o hacer un rollback de las modificaciones que se hagan en up
+La función down sirve para revertir o hacer un rollback de las modificaciones que se hagan en up
+
+Ejemplo
+
+```php
+<?php
+// Declaración del namespace para la migración
+namespace App\Database\Migrations;
+// Importa la clase Migration de CodeIgniter
+use CodeIgniter\Database\Migration;
+
+// Definición de la clase CreaTablaCategorias que extiende de Migration
+class CreaTablaCategorias extends Migration
+{
+    // Método up para crear la tabla 'categorias'
+    public function up()
+    {
+        // Define los campos de la tabla 'categorias'
+        $this->forge->addField([
+            // Campo 'id', entero, con auto incremento
+            'id' => [
+                'type' => 'INT', // Tipo de dato entero
+                'constraint' => 11, // Longitud del campo
+                'auto_increment' => true, // Auto incremento
+            ],
+            // Campo 'nombre', tipo varchar, longitud 100
+            'nombre' => [
+                'type' => 'VARCHAR', // Tipo de dato cadena de texto
+                'constraint' => 100, // Longitud máxima de 100 caracteres
+            ]
+        ]);
+
+        // Define la clave primaria de la tabla
+        $this->forge->addKey('id', true); // 'id' como clave primaria
+
+        // Crea la tabla 'categorias' con los campos definidos
+        $this->forge->createTable('categorias');
+    }
+
+    // Método down para eliminar la tabla 'categorias'
+    public function down()
+    {
+        // Elimina la tabla 'categorias' si existe
+        $this->forge->dropTable('categorias');
+    }
+}
+?>
+```
+
+## Cómo ejecutar una Migración
+
+Es posible ejecutar una Migracion desde un controlador con uso de una variable y un Try Catch
+
+Ejemplo
+
+```php
+<?php
+
+// Declaración del namespace para el controlador
+namespace App\Controllers;
+
+// Definición de la clase Home que extiende de BaseController
+class Home extends BaseController
+{
+    // Método index que será el punto de entrada cuando se accede al controlador
+    public function index()
+    {
+        // Carga el servicio de migraciones de CodeIgniter
+        $migrate = \Config\Services::migrations();
+
+        try {
+            // Intenta ejecutar las migraciones hasta la versión más reciente
+            $migrate->latest();
+        } catch (\Throwable $e) {
+            // Si ocurre una excepción, la captura y la muestra
+            echo $e;
+        }
+    }
+}
+?>
+```
+
+En este ejemplo se llama al servicio de migraciones y se ejecuta el método `latest()` que ejecuta la última migración disponible.
+
+## Migracion para crear una tabla y borrarla
+
+```php
+<?php
+namespace App\Database\Migrations; // Define el espacio de nombres para la migración
+
+use CodeIgniter\Database\Migration; // Importa la clase Migration de CodeIgniter
+
+class CreaTablaCategorias extends Migration // Define una nueva clase que extiende la clase Migration
+{
+    public function up() // Método que se ejecuta al aplicar la migración
+    {
+        $this->forge->addField([ // Añade campos a la tabla utilizando el objeto forge
+            'id' => [ // Define un campo 'id'
+                'type' => 'INT', // El tipo de dato es entero
+                'constraint' => 11, // El tamaño del campo es 11
+                'auto_increment' => true, // El campo es auto-incremental
+                'unsigned' => true, // El campo no permite valores negativos
+            ],
+            'nombre' => [ // Define un campo 'nombre'
+                'type' => 'VARCHAR', // El tipo de dato es cadena de texto
+                'constraint' => 100, // El tamaño máximo es 100 caracteres
+            ],
+        ]);
+        $this->forge->addKey('id', true); // Establece 'id' como clave primaria
+        $this->forge->createTable('categorias'); // Crea la tabla 'categorias'
+    }
+
+    public function down() // Método que se ejecuta al revertir la migración
+    {
+        $this->forge->dropTable('categorias'); // Elimina la tabla 'categorias'
+    }
+}
+
+```
+
+## Migración para Modificar la Tabla (Agregar una Columna y eliminar)
+
+Esta migración añade una nueva columna descripcion a la tabla categorias.
+
+```php
+<?php
+namespace App\Database\Migrations; // Define el espacio de nombres para la migración
+
+use CodeIgniter\Database\Migration; // Importa la clase Migration de CodeIgniter
+
+class AgregaDescripcionACategorias extends Migration // Define una nueva clase que extiende la clase Migration
+{
+    public function up() // Método que se ejecuta al aplicar la migración
+    {
+        $fields = [ // Define un array de campos para añadir a la tabla
+            'descripcion' => [ // Define un campo 'descripcion'
+                'type' => 'TEXT', // El tipo de dato es texto
+                'null' => true, // Permite valores nulos
+            ],
+        ];
+        $this->forge->addColumn('categorias', $fields); // Añade el campo 'descripcion' a la tabla 'categorias'
+    }
+
+    public function down() // Método que se ejecuta al revertir la migración
+    {
+        $this->forge->dropColumn('categorias', 'descripcion'); // Elimina el campo 'descripcion' de la tabla 'categorias'
+    }
+}
+```
+
+## Regresar a otra migración
+
+Cuando utilizas migraciones
+
+![alt text](image-139.png)
+
+En tu base de datos se te genera una tabla llamada migrations
+para regresar a migraciones anteriores puedes utilizar en un controlador el comando
+
+![alt text](image-137.png)
+
+esto te regresará a una migración anterior
+
+## Ejecutar una migracion desde consola
+
+![alt text](image-138.png)
+
+con este comando ejecutas todas tus migraciones hasta la ultima o la mas reciente
+
+Tambien es posible elegir a que migracion quieres egresar tu base de datos
+
+esto con ayuda de la tabla migratios que se genera sola cuando utilizas una migraciones
+
+![alt text](image-140.png)
+
+con la columna batch
+y el comando
+
+![alt text](image-141.png)
+
+siendo el 1 el numero de batch
+
+si quieres regresar todas las migraciones puedes omitir poner -b (numerode batchs es decir)
+
+![alt text](image-142.png)
+
+# Seeders
+
+Se utilizan para agregar grandes cantidades de información
+
+los seeders son herramientas poderosas para poblar tu base de datos con datos de prueba. Estos scripts te permiten insertar rápidamente datos iniciales en tus tablas de base de datos, lo que es útil durante el desarrollo y las pruebas.
+
+Los seeders en CodeIgniter 4 siguen el principio de "sembrar" datos, donde creas archivos PHP dedicados que contienen métodos para insertar datos en tus tablas. Puedes crear múltiples archivos de seeder para diferentes tablas o incluso para diferentes tipos de datos.
+
+Una vez que hayas escrito tus seeders, puedes ejecutarlos usando la CLI de CodeIgniter para insertar los datos en tu base de datos. Esto facilita la creación y la gestión de datos de prueba, lo que a su vez acelera el proceso de desarrollo y pruebas de tu aplicación.
+
+## Donde estan los seeders
+
+La carpeta contenedora de seeders por defecto en codeigniter es
+
+app/Database/Seeds
+
+## crear seeders desde CLI
+
+Con ayuda de SPARK podemos ingresar el comando
+
+```go
+php spark make:seeder NombreDelSeeder
+```
+
+## Estructura de un seeder
+
+```php
+<?php
+
+namespace App\Database\Seeds; // Define el namespace para la clase CategoriasSeeder en el directorio App\Database\Seeds.
+
+use CodeIgniter\Database\Seeder; // Importa la clase Seeder del namespace CodeIgniter\Database.
+
+class CategoriasSeeder extends Seeder // Declara la clase CategoriasSeeder que extiende de Seeder.
+{
+    public function run() // Define el método run que se ejecutará al correr el seeder.
+    {
+        $dta = [ // Define un array asociativo con los datos de la categoría a insertar en la base de datos.
+            'nombre' => 'bebidas', // Asigna el valor 'bebidas' a la clave 'nombre'.
+        ];
+        $this->db->table('categorias')->insertBatch($dta); // Inserta los datos de la categoría en la tabla 'categorias' de la base de datos.
+    }
+}
+```
+
+## Ejecutar seeder con CLI y desde un controller
+
+Desde un controlador se instancia y se llama al metodo call
+
+![alt text](image-143.png)
+
+Desde CLI
+
+![alt text](image-144.png)
+
+# Helpers
+
+En CodeIgniter 4, los "helpers" son funciones globales que pueden ser utilizadas en todo el sistema sin necesidad de cargar una instancia de clase específica. Estas funciones son útiles para realizar tareas comunes de forma rápida y sencilla en tus aplicaciones. Los helpers están diseñados para proporcionar funcionalidades básicas que son necesarias en muchos proyectos web.
+
+Algunos ejemplos de helpers en CodeIgniter 4 incluyen funciones para trabajar con arrays, strings, URLs, formularios, archivos, fechas, y más. Por ejemplo, puedes encontrar helpers como url_helper para generar URLs de forma dinámica, form_helper para crear y validar formularios, file_helper para trabajar con archivos, entre otros.
+
+Puedes cargar un helper específico en tu controlador, modelo o vista utilizando el método helper() de la clase CodeIgniter\Functions\Functions. Por ejemplo:
+
+```php
+helper('url'); // Carga el helper url_helper
+
+// Ahora puedes usar las funciones del helper en cualquier parte del código
+echo base_url('controlador/metodo');
+```
+
+## ubicacion
+
+Los Helpers por defecto se encuentran en
+
+app/system/Helpers
+
+En esta capreta ya se encuentran los helpers predefinidos pero puedes agregar mas
+
+![alt text](image-145.png)
+
+1. **array_helper**: Contiene funciones para trabajar con arrays, como `element()`, `random_element()`, `array_dot()` y más.
+
+2. **cookie_helper**: Proporciona funciones para trabajar con cookies en tus aplicaciones web.
+
+3. **date_helper**: Contiene funciones para formatear y trabajar con fechas y horas.
+
+4. **file_helper**: Ofrece funciones para trabajar con archivos, como leer, escribir, eliminar, y manipular rutas de archivos.
+
+5. **form_helper**: Proporciona funciones para generar y validar formularios HTML de manera sencilla.
+
+6. **html_helper**: Contiene funciones para generar elementos HTML comunes, como enlaces, listas, tablas, entre otros.
+
+7. **inflector_helper**: Ofrece funciones para pluralizar y singularizar strings.
+
+8. **kint_helper**: Proporciona funciones para debugging avanzado utilizando la biblioteca Kint.
+
+9. **number_helper**: Ofrece funciones para formatear números y realizar operaciones matemáticas básicas.
+
+10. **security_helper**: Proporciona funciones para realizar tareas de seguridad, como escapar datos y limpiar inputs.
+
+11. **test_helper**: Contiene funciones útiles para escribir y ejecutar pruebas unitarias.
+
+12. **text_helper**: Ofrece funciones para trabajar con strings, como `word_limiter()`, `character_limiter()`, `highlight_code`, y más.
+
+13. **url_helper**: Contiene funciones para generar y manipular URLs de forma sencilla.
+
+14. **xml_helper**: Proporciona funciones para trabajar con datos XML.
+
+Si quieres agregar un helper propio puedes agregarlo en
+
+app/Helpers
+
+## Como Activar un helper
+
+Si quieres que se puedan utilizar en todos tus controladores puedes activarlo desde el BaseController
+
+En la sección
+
+![alt text](image-146.png)
+
+DE ESTA MANERA SE ACTIVAN
+
+![alt text](image-147.png)
+
+si quieres activar un helper para un solo controlador puedes llamarlo desde el constructor del controlador de esta manera
+
+![alt text](image-148.png)
+
+Esto lo habilitara para poder utilizarlo en cualquier funcion del controlador
+
+Otra manera mas ligera de usarlo es cargarlo solamente en las funciones que lo vas a usar del controlador
+
+![alt text](image-149.png)
+
+ESTO PERMIE NO SEBRECARGAR TODO TU CONTROLADOR DE FUNCIONES DEL HELPER
+
+## Creacion de Helper
+
+Tenemos que ir a la ubicacion por defecto de los helpers segun la version de codel esta puede variar
+
+aqui creamos un archivo tipo .php
