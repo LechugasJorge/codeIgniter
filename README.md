@@ -9,7 +9,6 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [Descripción 📝](#descripción-)
   - [Requisitos 🛠️](#requisitos-️)
   - [Instalación 📥](#instalación-)
-  - [Ejercicios 📚](#ejercicios-)
   - [Referencias 🔗](#referencias-)
   - [Copiar código](#copiar-código)
 - [CodeIgniter](#codeigniter)
@@ -28,6 +27,7 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
 - [Configuración inicial](#configuración-inicial)
   - [Configuración Inicial del Archivo app.php](#configuración-inicial-del-archivo-appphp)
   - [Configuración del Archivo Database.php](#configuración-del-archivo-databasephp)
+- [Configuración del modo de desarrollo](#configuración-del-modo-de-desarrollo)
 - [Patrón MVC (Modelo-Vista-Controlador) 🌟](#patrón-mvc-modelo-vista-controlador-)
   - [¿Qué es MVC? 🤔](#qué-es-mvc-)
     - [Componentes de MVC 🧩](#componentes-de-mvc-)
@@ -123,6 +123,14 @@ Bienvenido a este repositorio dedicado a recolectar diversos ejercicios para apr
   - [ubicacion](#ubicacion)
   - [Como Activar un helper](#como-activar-un-helper)
   - [Creacion de Helper](#creacion-de-helper)
+- [Creacion de formularios](#creacion-de-formularios)
+- [Validaciones con Helper validations](#validaciones-con-helper-validations)
+  - [Evita que se reiniciew el formulario despues de validar](#evita-que-se-reiniciew-el-formulario-despues-de-validar)
+  - [Error alado del input](#error-alado-del-input)
+- [Validaciones personalizadas](#validaciones-personalizadas)
+- [Uso de CLI SPARK](#uso-de-cli-spark)
+- [Metodos HTTP y RESTfull](#metodos-http-y-restfull)
+- [SUBIR ARCHIVO](#subir-archivo)
 
 ## Descripción 📝
 
@@ -130,7 +138,7 @@ Este repositorio contiene una serie de ejercicios diseñados para enseñar los c
 
 ## Requisitos 🛠️
 
-- PHP 7.4 o superior
+- PHP 8.2 o superior
 - Servidor web (Apache, Nginx, etc.)
 - Composer
 - MySQL o cualquier otro sistema de base de datos compatible con CodeIgniter
@@ -140,20 +148,10 @@ Este repositorio contiene una serie de ejercicios diseñados para enseñar los c
 1. Clona este repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/LechugasJorge/codeIgniter.git
    ```
 
 2. Navega al directorio del proyecto:
-
-## Ejercicios 📚
-
-A continuación se detallan los ejercicios disponibles en este repositorio:
-
-Introducción a CodeIgniter:
-Descripción: Aprende los fundamentos de CodeIgniter, incluyendo la configuración inicial y la creación de tu primera aplicación.
-Video de referencia: Curso de CodeIgniter - Introducción
-Archivo de ejercicio: 01-introducción
-(Agrega más ejercicios conforme vayas avanzando en el curso y en otros materiales)
 
 ## Referencias 🔗
 
@@ -179,6 +177,14 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 # CodeIgniter
 
+CodeIgniter es un framework web PHP full-stack que es ligero, rápido, flexible y seguro.
+
+Es un marco de desarrollo de aplicaciones, un conjunto de herramientas, para personas que construyen sitios web usando PHP. Su objetivo es permitirle Desarrolla proyectos mucho más rápido de lo que podrías hacerlo si estuvieras escribiendo código desde cero, proporcionando un amplio conjunto de bibliotecas para las tareas, así como una interfaz sencilla y una estructura lógica para acceder a estas bibliotecas.
+
+CodeIgniter te permite centrarte creativamente en tu proyecto minimizando la cantidad de código necesario para una tarea determinada.
+
+En la medida de lo posible, CodeIgniter se ha mantenido lo más flexible posible, permitiéndote trabajar de la manera que quieras, sin que te obliguen a trabajar de cierta manera. El marco puede tener partes centrales fácilmente extendidas o se reemplaza por completo para que el sistema funcione de la manera que necesita.
+
 ![alt text](image-46.png)
 
 ![alt text](image-47.png)
@@ -198,8 +204,6 @@ CodeIgniter es un framework de desarrollo web para PHP. 🚀 Está diseñado par
 
 En resumen, CodeIgniter es una opción fantástica si buscas un framework de PHP que sea rápido, eficiente y fácil de usar. Si estás pensando en desarrollar una nueva aplicación web, ¡vale la pena considerarlo! 🚀💻
 
-¿Hay algo más específico que te gustaría saber sobre CodeIgniter? 🤔💬
-
 # Herramientas Necesarias para Programar en CodeIgniter
 
 Para comenzar a desarrollar con CodeIgniter, necesitarás algunas herramientas básicas. Aquí tienes una lista con las más importantes:
@@ -211,14 +215,32 @@ Para comenzar a desarrollar con CodeIgniter, necesitarás algunas herramientas b
    - **MAMP** (macOS): [https://www.mamp.info/en/](https://www.mamp.info/en/)
    - **LAMP** (Linux): Puedes instalar Apache, MySQL y PHP usando el gestor de paquetes de tu distribución.
 
-2. **PHP**: CodeIgniter requiere PHP. Asegúrate de tener instalada una versión compatible (PHP 7.2 o superior).
+2. **PHP**: CodeIgniter requiere PHP. Asegúrate de tener instalada una versión compatible (PHP 8.1 o superior).con las siguientes extensiones de PHP habilitadas:
 
-   - Descarga PHP: [https://www.php.net/downloads](https://www.php.net/downloads)
+- Intl
+
+- mbstring
+
+- JSON
+
+  - Descarga PHP: [https://www.php.net/downloads](https://www.php.net/downloads)
 
 3. **Base de Datos**: CodeIgniter es compatible con varias bases de datos, pero la más común es MySQL.
 
    - **MySQL**: [https://www.mysql.com/](https://www.mysql.com/)
    - También puedes usar otras bases de datos como PostgreSQL, SQLite, entre otras.
+
+- Las bases de datos admitidas actualmente son:
+
+MySQL a través del controlador (solo versión 5.1 y superior)MySQLi
+
+PostgreSQL a través del controlador (solo versión 7.4 y superior)Postgre
+
+SQLite3 a través del controladorSQLite3
+
+Microsoft SQL Server a través del controlador (solo versión 2012 y posteriores)SQLSRV
+
+Oracle Database a través del controlador (solo versión 12.1 y superior)OCI8
 
 4. **Editor de Código o IDE**: Utiliza un buen editor de código o un entorno de desarrollo integrado (IDE) para escribir y gestionar tu código.
 
@@ -527,6 +549,14 @@ El archivo `Database.php` es otro archivo de configuración importante en una ap
 
 Estas son algunas de las configuraciones más comunes que puedes encontrar en el archivo `Database.php`. Es importante revisar este archivo y ajustar las configuraciones según las necesidades específicas de tu aplicación y tu entorno de base de datos. ¡Asegúrate de mantener seguras las credenciales de tu base de datos y de no incluirlas en el control de versiones!
 
+# Configuración del modo de desarrollo
+
+De forma predeterminada, CodeIgniter se inicia en modo de producción. Esta es una característica de seguridad para mantener su sitio un poco más seguro en caso de que la configuración se estropee una vez que esté activa. Así que primero vamos a arreglar eso. Copie o cambie el nombre del archivo env a .env. Ábrelo.
+
+Este archivo contiene la configuración específica del servidor. Esto significa que nunca tendrá que hacerlo Confirme cualquier información confidencial en su sistema de control de versiones. Incluye: Algunos de los más comunes ya quieres entrar, aunque todos están comentados fuera. Así que descomente la línea con en ella y cámbiela a:CI_ENVIRONMENTproductiondevelopment
+
+CI_ENVIRONMENT = development
+
 # Patrón MVC (Modelo-Vista-Controlador) 🌟
 
 ## ¿Qué es MVC? 🤔
@@ -536,6 +566,12 @@ Estas son algunas de las configuraciones más comunes que puedes encontrar en el
 MVC es un **patrón de diseño de software** que separa una aplicación en tres componentes principales: **Modelo**, **Vista** y **Controlador**. Esta separación facilita la gestión del código y mejora la Escalabilidad y el mantenimiento de la aplicación. Vamos a ver cada componente en detalle. 🔍
 
 ### Componentes de MVC 🧩
+
+Los modelos administran los datos de la aplicación y ayudan a aplicar las reglas de negocio especiales que la aplicación pueda necesitar.
+
+Las vistas son archivos simples, con poca o ninguna lógica, que muestran la información al usuario.
+
+Los controladores actúan como código de unión, serializando los datos de un lado a otro entre la vista (o el usuario que la está viendo) y el almacenamiento de datos.
 
 1. **Modelo (Model) 🗃️**
 
@@ -2437,4 +2473,220 @@ ESTO PERMIE NO SEBRECARGAR TODO TU CONTROLADOR DE FUNCIONES DEL HELPER
 
 Tenemos que ir a la ubicacion por defecto de los helpers segun la version de codel esta puede variar
 
-aqui creamos un archivo tipo .php
+aqui creamos un archivo tipo .php y le metemos la estructura basica
+
+```php
+<?php
+
+if (!function_exists('generaToken')) {
+    function generaToken()
+    {
+        return md5(uniqid(mt_rand(), true));
+    }
+}
+```
+
+# Creacion de formularios
+
+En codeIgniter 4 existe un helper que te proporciona funciones para la creracion de formularios 'form' y tambien se pueden crear con etiquetas html
+
+basta con llamar al helper form desde el controlador
+
+![alt text](image-150.png)
+
+Desde el constructor
+
+![alt text](image-151.png)
+
+O desde el BaseController
+
+![alt text](image-152.png)
+
+y retornar una vista que lo implemente
+
+![alt text](image-153.png)
+
+este es un ejemplo de un formulario pequeño que utiliza funciones el helper 'form'
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Nuevo Producto</h1>
+
+    <?php echo form_open('producto/guarda'); ?>
+    <?php
+    $atributos = [
+        'type' => 'text',
+        'id' => 'codigo',
+        'name' => 'codigo',
+        'class' => 'form-control',
+        'required' => false,
+    ]
+    ?>
+
+    <p>
+        <?php echo form_label('Código', 'codigo'); ?>
+        <?php echo form_input($atributos); ?>
+
+    </p>
+    <p>
+        <?php echo form_label('Nombre', 'nombre'); ?>
+        <?php echo form_input('nombre', '', ['id' => 'nombre']); ?>
+    </p>
+    <p>
+        <?php echo form_label('Precio', 'precio'); ?>
+        <?php echo form_input('precio', '0.00', ['id' => 'precio']); ?>
+    </p>
+    <p>
+        <?php echo form_label('Stock', 'stock'); ?>
+        <?php echo form_input('stock', '0', ['id' => 'stock']); ?>
+    </p>
+
+    <p>
+        <?php echo form_submit('submit', 'Guardar'); ?>
+    </p>
+
+    <?php echo form_close() ?>
+</body>
+
+</html>
+```
+
+Otra forma de crear formularios es con las etiquetas html
+
+```php
+<?php echo $this->extend('plantilla/layout'); ?>
+
+<?php echo $this->section('contenido'); ?>
+
+<!-- Contenido -->
+<main class="page">
+   <div class="container">
+       <br>
+       <br>
+       <h1>Nuevo Producto</h1>
+       <form action=<?php echo base_url('/producto/guarda') ?> method="post">
+           <div class="form-group">
+               <label for="codigo" class="form-label">Código</label>
+               <input type="text" id="codigo" name="codigo" class="form-control" required>
+           </div>
+           <div class="form-group">
+               <label for="nombre">Nombre</label>
+               <input type="text" id="nombre" name="nombre" class="form-control" required>
+           </div>
+           <div class="form-group">
+               <label for="precio">Precio</label>
+               <input type="number" id="precio" name="precio" class="form-control" min="1" step="0.01" value="0.00" required>
+           </div>
+           <div class="form-group">
+               <label for="stock">Stock</label>
+               <input type="number" id="stock" name="stock" class="form-control" min="0" value="0" required>
+           </div>
+           <button type="submit" class="btn btn-primary">Guardar</button>
+       </form>
+   </div>
+</main>
+<?php echo $this->endSection('contenido'); ?>
+```
+
+# Validaciones con Helper validations
+
+Tienes que recibir desde un controlador el formulario que recibes
+
+Formulario con action a una ruta
+
+![alt text](image-154.png)
+
+ruta
+
+![alt text](image-155.png)
+
+Funcion para validar; contiene un arreglo con las condiciones que requiere tener cada campo o input
+Todos son referenciados con su name
+
+el arreglo puede ser llenado con diferentes validaciones, puedes encontrar todas las validaciones en la documentacion oficial de codeIgniter 4
+
+este arreglo se valida con la funcion validate del helper
+
+![alt text](image-156.png)
+
+en este caso agregue estas validaciones
+
+![alt text](image-157.png)
+
+Si en el campo codigo escribimos algo que ya exista en nuestra tabla en la columna de codigo nos mandara un error
+
+esto imprimiendo desde la vista la funcion
+
+![alt text](image-158.png)
+
+Aqui como ya existe un registro de codigo me manda un mensaje de validacion en ingles
+
+![alt text](image-159.png)
+
+Para modificar los mensajes de validacion
+podemos modificarlos desde
+
+![alt text](image-160.png)
+
+y la otra opcion es modificarlo desde tu arreglo de reglas
+
+![alt text](image-161.png)
+
+al final el mensaje de error se muestra de esta manera
+
+![alt text](image-162.png)
+
+## Evita que se reiniciew el formulario despues de validar
+
+el helper form cuenta con una funcion para que el formulario no se reinicie despues de haber tenido un error de validacion
+
+se le tiene que agregar a cada input
+
+![alt text](image-163.png)
+
+## Error alado del input
+
+Para colocar elmensaje de error de validacion abajo del input correspondiente hay otra funcion disponible
+
+por ejemplo
+![alt text](image-164.png)
+
+![alt text](image-165.png)
+
+# Validaciones personalizadas
+
+# Uso de CLI SPARK
+
+Montar server
+
+![alt text](image-166.png)
+
+Generacion de Archivos
+
+- controller
+
+![alt text](image-167.png)
+
+- modelo
+
+![alt text](image-168.png)
+
+puedes crear todo junto
+
+![alt text](image-169.png)
+
+# Metodos HTTP y RESTfull
+
+![S](image-170.png)
+
+# SUBIR ARCHIVO
+****
