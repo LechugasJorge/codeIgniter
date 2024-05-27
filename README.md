@@ -2688,5 +2688,3 @@ puedes crear todo junto
 
 ![S](image-170.png)
 
-# SUBIR ARCHIVO
-****
